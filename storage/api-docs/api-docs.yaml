@@ -1,0 +1,40 @@
+openapi: 3.0.0
+info:
+  title: laravel-swagger
+  description: 'Swagger UIを使用したAPIテスト'
+  version: 1.0.0
+servers:
+  -
+    url: 'http://localhost'
+    description: 'OpenApi host'
+paths:
+  /api/user:
+    get:
+      tags:
+        - users
+      summary: 'Get list of users'
+      description: 'Returns list of users'
+      operationId: getUserList
+      parameters:
+        -
+          name: author
+          in: query
+          description: "Filter books by the author's name"
+          required: false
+          schema:
+            type: string
+          example: 'John Doe'
+      responses:
+        200:
+          description: Successful
+        404:
+          description: 'Not Found'
+components:
+  schemas:
+    User:
+      title: User
+  securitySchemes:
+    BearerAuth:
+      type: apiKey
+      name: api_token
+      in: header
